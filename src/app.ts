@@ -28,3 +28,5 @@ const port = 8080;
 app.listen(port, HOST_NAME, () => {
     console.log(`Сервер запущен на порту ${port}`);
 });
+
+export default app;
