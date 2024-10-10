@@ -1,8 +1,11 @@
 import { Socket } from 'socket.io';
+import { EAuthTokenPlatformType, LoginSession } from 'steam-session';
+import { steamAuthNameAndPassword, steamAuthQr } from './services/steamAuthService';
 
 export const steamAuthHandlers = (socket: Socket) => {
-    socket.on('message', (msg: string) => {
-      console.log('Message received:', msg);
-      socket.emit('response', `Server received: ${msg}`);
-    });
-  };
+
+  let session = new LoginSession(EAuthTokenPlatformType.SteamClient);
+
+  steamAuthQr(socket, session);
+  steamAuthNameAndPassword(socket, session);
+};
